@@ -13,7 +13,7 @@ import { Button } from "../ui/button";
 import { ModeToggle } from "../component/mode-toggle";
 import { PanelLeftIcon, Package2Icon, HomeIcon, ShoppingCartIcon, PackageIcon, UsersIcon, LineChartIcon } from "lucide-react";
 import { SheetTrigger, SheetContent, Sheet} from "../ui/sheet";
-import BreadCrumb from "../component/BreadCrumb";
+import BreadCrumb from "../component/breadcrumb";
 import { UserButton, OrganizationSwitcher } from "@clerk/nextjs";
 
 

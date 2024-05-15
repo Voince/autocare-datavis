@@ -1,9 +1,8 @@
 import { Card, CardHeader, CardTitle, CardDescription, CardFooter, CardContent } from "@/components/ui/card";
-import { Progress } from "@/components/ui/progress";
-import { RepairOrdersCard } from "@/components/component/RepairOrdersCard";
-import RepairOrdersTable from "@/components/component/RepairOrdersTable";
-import {CreateRepairOrderButton} from "@/components/component/CreateRepairOrderButton";
-import { TotalOrdersKPI, TotalRevenueKPI, AverageOrderValueKPI, MostCommonRepairIssuesKPI } from "@/components/component/RepairOrdersKPI";
+import { RepairOrdersCard } from "@/components/component/ro-card";
+import RepairOrdersTable from "@/components/component/ro-table";
+import {CreateRepairOrderButton} from "@/components/component/create-ro-button";
+import { TotalOrdersKPI, TotalRevenueKPI, AverageOrderValueKPI, MostCommonRepairIssuesKPI } from "@/components/component/KPI/RepairOrdersKPI";
 
 export default function RepairOrdersPage() {
   return (
@@ -12,9 +11,9 @@ export default function RepairOrdersPage() {
           <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-2 xl:grid-cols-4">
             <Card className="sm:col-span-2">
               <CardHeader className="pb-3">
-                <CardTitle>Your Repair Orders</CardTitle>
+                <CardTitle>Repair Orders</CardTitle>
                 <CardDescription className="max-w-lg text-balance leading-relaxed">
-                  Introducing Our Dynamic Orders Dashboard for Seamless Management and Insightful Analysis.
+                Oversee your repair orders with offering creation, viewing, and efficient management of every repair order.
                 </CardDescription>
               </CardHeader>
               <CardFooter>
@@ -24,9 +23,7 @@ export default function RepairOrdersPage() {
             <TotalRevenueKPI />
             <TotalOrdersKPI />
           </div>
-
           <RepairOrdersTable />
-          
         </div>
         <RepairOrdersCard />
     </main>

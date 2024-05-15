@@ -1,5 +1,5 @@
-import SettingsNav from "@/components/component/SettingsNav";
-import SettingsForm from "@/components/component/SettingsForm"
+import SettingsNav from "@/components/component/settings-nav"
+import SettingsForm from "@/components/component/settings-form"
 import Link from "next/link";
 import { Card, CardHeader, CardTitle,CardDescription, CardContent,CardFooter } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";

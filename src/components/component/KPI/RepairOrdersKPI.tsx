@@ -2,8 +2,8 @@
 
 // Import RepairOrderData from your data source
 import { RepairOrderData } from '@/components/data/RepairOrderData';
-import { Progress } from '@radix-ui/react-progress';
-import { Card, CardHeader, CardDescription, CardTitle, CardContent, CardFooter } from '../ui/card';
+import  {Progress} from "@/components/ui/progress";
+import { Card, CardHeader, CardDescription, CardTitle, CardContent, CardFooter } from '../../ui/card';
 
 // Function to calculate total revenue
 const calculateTotalRevenue = (orders: any[]): number => {
@@ -14,12 +14,23 @@ const calculateTotalRevenue = (orders: any[]): number => {
 const calculateAverageOrderValue = (orders: any[]): number => {
     const totalRevenue = calculateTotalRevenue(orders);
     const totalOrders = orders.length;
-    return totalRevenue / totalOrders;
+    return Math.round(((totalRevenue / totalOrders)+ Number.EPSILON) * 100)/ 100;
 }
 
 // Function to count total orders
 const countTotalOrders = (orders: any[]): number => {
     return orders.length;
+}
+
+// Function to count total in progress orders
+function countInProgressOrders(orders: any[]): number {
+    let inProgressCount: number = 0;
+    orders.forEach(order => {
+        if (order.status === "In Progress") {
+            inProgressCount++;
+        }
+    });
+    return inProgressCount;
 }
 
 // Function to determine the most common repair issues
@@ -30,7 +41,7 @@ const getMostCommonRepairIssues = (orders: any[]): string[] => {
         return acc;
     }, {});
     const sortedIssues = Object.keys(issueCounts).sort((a, b) => issueCounts[b] - issueCounts[a]);
-    return sortedIssues.slice(0, 3); // Return top 3 most common issues
+    return sortedIssues.slice(0, 3); 
 }
 
 // Function to calculate total revenue
@@ -39,9 +50,9 @@ export function TotalRevenueKPI() {
     
     return (
         <Card>
-            <CardHeader className="pb-2">
+            <CardHeader>
                 <CardDescription>Total Revenue</CardDescription>
-                <CardTitle className="text-4xl">${totalRevenue}</CardTitle>
+                <CardTitle className="text-6xl">₱{totalRevenue}</CardTitle>
             </CardHeader>
             <CardContent>
                 <div className="text-xs text-muted-foreground">+25% from last week</div>
@@ -58,7 +69,7 @@ export function AverageOrderValueKPI() {
         <Card>
             <CardHeader className="pb-2">
                 <CardDescription>Average Order Value</CardDescription>
-                <CardTitle className="text-4xl">${averageOrderValue}</CardTitle>
+                <CardTitle className="text-4xl">₱{averageOrderValue}</CardTitle>
             </CardHeader>
             <CardContent>
                 <div className="text-xs text-muted-foreground">+10% from last month</div>
@@ -73,18 +84,17 @@ export function AverageOrderValueKPI() {
 // Function to count total orders
 export function TotalOrdersKPI() {
     const totalOrders = countTotalOrders(RepairOrderData);
+    const totalPendingOrders = countInProgressOrders(RepairOrderData);
 
     return (
         <Card>
             <CardHeader className="pb-2">
-                <CardDescription>Total Orders</CardDescription>
-                <CardTitle className="text-4xl">{totalOrders}</CardTitle>
+                <CardDescription>Total In-Progress Repair Orders</CardDescription>
+                <CardTitle className="text-6xl">{totalPendingOrders}/{totalOrders}</CardTitle>
+                <br />
             </CardHeader>
-            <CardContent>
-                <div className="text-xs text-muted-foreground">-</div>
-            </CardContent>
             <CardFooter>
-                <Progress aria-label="No change" value={0} />
+                <Progress value={(totalPendingOrders/totalOrders)*100}/>
             </CardFooter>
         </Card>
     );
@@ -98,14 +108,12 @@ export function MostCommonRepairIssuesKPI() {
         <Card>
             <CardHeader className="pb-2">
                 <CardDescription>Most Common Repair Issues</CardDescription>
-                <CardTitle className="text-4xl">{mostCommonIssues.join(', ')}</CardTitle>
+                <div>
+                    {mostCommonIssues.map((issue, index) => (
+                        <CardTitle key={index} className="text-2xl">{issue}</CardTitle>
+                    ))}
+                </div>
             </CardHeader>
-            <CardContent>
-                <div className="text-xs text-muted-foreground">-</div>
-            </CardContent>
-            <CardFooter>
-                <Progress aria-label="No change" value={0} />
-            </CardFooter>
         </Card>
     );
 }
