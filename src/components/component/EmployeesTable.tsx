@@ -1,19 +1,19 @@
 "use client";
 
-import { Button } from "@/components/ui/button"
-import { TableHead, TableRow, TableHeader, TableCell, TableBody, Table } from "@/components/ui/table"
-import { Badge } from "@/components/ui/badge"
+import { TableHead, TableRow, TableHeader, TableCell, TableBody, Table } from "@/components/ui/table";
+import { Badge } from "@/components/ui/badge";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "../ui/card";
+import { Employee,EmployeesData } from "@/components/data/EmployeesData"; 
 
 export default function EmployeesTable() {
   return (
     <Card>
-    <CardHeader className="px-7">
-      <CardTitle>Employees</CardTitle>
-      <CardDescription>Employees who are currently working</CardDescription>
-    </CardHeader>
+      <CardHeader className="px-7">
+        <CardTitle>Employees</CardTitle>
+        <CardDescription>Employees who are currently working</CardDescription>
+      </CardHeader>
       <CardContent>
-       <Table>
+        <Table>
           <TableHeader>
             <TableRow>
               <TableHead>Employee's Name</TableHead>
@@ -23,54 +23,33 @@ export default function EmployeesTable() {
             </TableRow>
           </TableHeader>
           <TableBody>
-            <TableRow>
-              <TableCell>John</TableCell>
-              <TableCell>Doe</TableCell>
-              <TableCell>
-                <Badge variant="default">Active</Badge>
-              </TableCell>
-              <TableCell>Software Engineer</TableCell>
-              <TableCell>2021-03-15</TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell>Jane</TableCell>
-              <TableCell>Smith</TableCell>
-              <TableCell>
-                <Badge variant="default">Active</Badge>
-              </TableCell>
-              <TableCell>Product Manager</TableCell>
-              <TableCell>2019-09-01</TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell>Michael</TableCell>
-              <TableCell>Johnson</TableCell>
-              <TableCell>
-                <Badge variant="outline">On Leave</Badge>
-              </TableCell>
-              <TableCell>UI/UX Designer</TableCell>
-              <TableCell>2022-06-01</TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell>Emily</TableCell>
-              <TableCell>Davis</TableCell>
-              <TableCell>
-                <Badge variant="destructive">Terminated</Badge>
-              </TableCell>
-              <TableCell>Data Analyst</TableCell>
-              <TableCell>2020-11-01</TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell>David</TableCell>
-              <TableCell>Wilson</TableCell>
-              <TableCell>
-                <Badge variant="default">Active</Badge>
-              </TableCell>
-              <TableCell>Sales Representative</TableCell>
-              <TableCell>2018-02-15</TableCell>
-            </TableRow>
+            {EmployeesData.map((employee, index) => (
+              <TableRow key={index}>
+                <TableCell>{employee.firstName}</TableCell>
+                <TableCell>{employee.lastName}</TableCell>
+                <TableCell>
+                  <Badge variant={getBadgeVariant(employee.status)}>{employee.status}</Badge>
+                </TableCell>
+                <TableCell>{employee.position}</TableCell>
+                <TableCell>{employee.employmentDate}</TableCell>
+              </TableRow>
+            ))}
           </TableBody>
         </Table>
       </CardContent>
     </Card>
   );
+}
+
+function getBadgeVariant(status: string) {
+  switch (status) {
+    case "Active":
+      return "default";
+    case "On Leave":
+      return "outline";
+    case "Terminated":
+      return "destructive";
+    default:
+      return "default";
+  }
 }

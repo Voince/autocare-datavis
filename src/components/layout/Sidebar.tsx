@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { TooltipProvider, Tooltip, TooltipTrigger, TooltipContent } from "../ui/tooltip";
-import { LayoutDashboard, HomeIcon, Wrench, UsersIcon, SettingsIcon, Calendar } from "lucide-react";
+import { LayoutDashboard, HomeIcon, Wrench, UsersIcon, SettingsIcon, Kanban } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from 'next/navigation';
 
@@ -21,8 +21,8 @@ const getIconByLabel = (label: string) => {
             return <Wrench className="h-5 w-5" />;
         case 'Employees':
             return <UsersIcon className="h-5 w-5" />;
-        case 'Calendar':
-            return <Calendar className="h-5 w-5" />;
+        case 'Kanban Board':
+            return <Kanban className="h-5 w-5" />;
         default:
             return null;
     }
@@ -72,7 +72,7 @@ export default function Sidebar({ links }: SidebarProps) {
                         <TooltipTrigger asChild>
                             <Link
                                 className="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
-                                href="#"
+                                href="/settings"
                             >
                                 <SettingsIcon className="h-5 w-5" />
                                 <span className="sr-only">Settings</span>

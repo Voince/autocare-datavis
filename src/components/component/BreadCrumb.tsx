@@ -14,7 +14,7 @@ const BreadCrumb = () => {
             <BreadcrumbList>
                 <BreadcrumbItem>
                     <BreadcrumbLink asChild>
-                        <Link href="/">Dashboard</Link>
+                        <p>AutoCare</p>
                     </BreadcrumbLink>
                 </BreadcrumbItem>
                 {pathNames.length > 0 && <BreadcrumbSeparator />}
