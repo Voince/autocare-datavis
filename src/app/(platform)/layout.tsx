@@ -1,11 +1,17 @@
-import { ClerkProvider } from "@clerk/nextjs";
+import { redirect } from 'next/navigation'
+import { createClient } from '@/utils/supabase/server'
 
-export default function PlatformLayout({children}: {children: React.ReactNode}) {
+export default async function PlatformLayout({children}: {children: React.ReactNode}) {
+    const supabase = createClient()
+
+    const { data, error } = await supabase.auth.getUser()
+    if (error || !data?.user) {
+      redirect('/login')
+    }
+    
     return (
-        <ClerkProvider>
-            <div>
-                {children}
-            </div>
-        </ClerkProvider>
+        <div>
+            {children}
+        </div>
     );
 }

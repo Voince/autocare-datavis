@@ -5,8 +5,8 @@ import { TrashIcon } from "lucide-react";
 import { Id, Task } from "./types";
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
-import { Card } from "../ui/card";
-import { Button } from "../ui/button";
+import { Card } from "../../ui/card";
+import { Button } from "../../ui/button";
 
 interface Props {
   task: Task;

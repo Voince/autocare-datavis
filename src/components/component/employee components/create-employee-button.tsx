@@ -12,9 +12,9 @@ import {
 } from "@/components/ui/dialog"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { ToastAction } from "../ui/toast"
-import { toast } from "../ui/use-toast"
-import { Textarea } from "../ui/textarea";
+import { ToastAction } from "../../ui/toast"
+import { toast } from "../../ui/use-toast"
+import { Textarea } from "../../ui/textarea";
 
 export function CreateEmployeeButton() {
   return (

@@ -1,7 +1,7 @@
 import { TotalNumberActiveEmployeesKPI, TotalNumberEmployeesKPI } from '@/components/component/KPI/EmployeesKPI';
-import { CreateEmployeeButton } from '@/components/component/create-employee-button';
-import { EmployeesCard } from '@/components/component/employees-card';
-import EmployeesTable from '@/components/component/employees-table';
+import { CreateEmployeeButton } from '@/components/component/employee components/create-employee-button';
+import { EmployeesCard } from '@/components/component/employee components/employees-card';
+import EmployeesTable from '@/components/component/employee components/employees-table';
 import { Button } from '@/components/ui/button';
 import { Card, CardHeader, CardTitle, CardDescription, CardFooter, CardContent } from '@/components/ui/card';
 import { Progress } from '@/components/ui/progress';

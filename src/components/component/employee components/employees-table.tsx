@@ -2,7 +2,7 @@
 
 import { TableHead, TableRow, TableHeader, TableCell, TableBody, Table } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
-import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "../ui/card";
+import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "../../ui/card";
 import { Employee,EmployeesData } from "@/components/data/EmployeesData"; 
 
 export default function EmployeesTable() {

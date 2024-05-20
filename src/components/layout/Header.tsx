@@ -1,22 +1,12 @@
 "use client";
 
 import Link from "next/link";
-import {
-    DropdownMenu,
-    DropdownMenuContent,
-    DropdownMenuItem,
-    DropdownMenuLabel,
-    DropdownMenuSeparator,
-    DropdownMenuTrigger,
-  } from "@/components/ui/dropdown-menu"
 import { Button } from "../ui/button";
 import { ModeToggle } from "../component/mode-toggle";
-import { PanelLeftIcon, Package2Icon, HomeIcon, ShoppingCartIcon, PackageIcon, UsersIcon, LineChartIcon } from "lucide-react";
+import { PanelLeftIcon, Package2Icon, HomeIcon, ShoppingCartIcon, PackageIcon, UsersIcon, LineChartIcon, } from "lucide-react";
 import { SheetTrigger, SheetContent, Sheet} from "../ui/sheet";
 import BreadCrumb from "../component/breadcrumb";
-import { UserButton, OrganizationSwitcher } from "@clerk/nextjs";
-
-
+import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuItem } from "@/components/ui/dropdown-menu";
 
 export default function Header() {
     return (
@@ -66,35 +56,31 @@ export default function Header() {
             <div className="relative ml-auto flex-1 md:grow-0">
             </div>
 
-            <Button>
-            <OrganizationSwitcher 
-                hidePersonal
-                afterCreateOrganizationUrl="/organization/:id"
-                afterLeaveOrganizationUrl="/select-org"
-                afterSelectOrganizationUrl="/organization/:id"
-                appearance={{
-                    elements: {
-                        rootBox: {
-                            display: "flex",
-                            justifyContent: "center",
-                            alignItems: "center",
-                        },
-                    },
-                }}
-            />
-            </Button>
-            
-            <UserButton 
-                afterSignOutUrl="/"
-                appearance={{
-                    elements:{
-                        avatarBox: {
-                            height: "30",
-                            width: "30",
-                        }
-                    }
-                }}
-            />
+            <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button className="overflow-hidden rounded-full" size="icon" variant="outline">
+                <img
+                  alt="Avatar"
+                  className="overflow-hidden rounded-full"
+                  height={36}
+                  src="/placeholder-user.jpg"
+                  style={{
+                    aspectRatio: "36/36",
+                    objectFit: "cover",
+                  }}
+                  width={36}
+                />
+              </Button>
+            </DropdownMenuTrigger>
+                <DropdownMenuContent align="end">
+                <DropdownMenuLabel>My Account</DropdownMenuLabel>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem>Settings</DropdownMenuItem>
+                <DropdownMenuItem>Support</DropdownMenuItem>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem>Logout</DropdownMenuItem>
+                </DropdownMenuContent>
+            </DropdownMenu>
             <ModeToggle />
         </header>
     );

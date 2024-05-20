@@ -1,4 +1,4 @@
-import { Column,Task } from "../kanban/types";
+import { Column,Task } from "../component/kanban components/types";
 
 export const defaultCols: Column[] = [
     {
